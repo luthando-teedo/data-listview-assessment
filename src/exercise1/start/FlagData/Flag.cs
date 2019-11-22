@@ -18,6 +18,11 @@ namespace FlagData
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public override string ToString()
+        {
+            return Country;
+        }
+
         /// <summary>
         /// Name of the country that this flag belongs to
         /// </summary>

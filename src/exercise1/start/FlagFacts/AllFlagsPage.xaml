@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cvt="clr-namespace:FunFlacts.Converters"
+             xmlns:data="clr-namespace:FlagData;assembly=FlagData"
+             mc:Ignorable="d"
+             x:Class="FlagFacts.AllFlagsPage"
+             Title="Fun with Flags">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <cvt:EmbeddedImageConverter x:Key="irConverter" 
+                 ResolvingAssemblyType="{x:Type data:Flag}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
+
+    <ListView ItemsSource="{Binding Flags}" 
+              SelectedItem="{Binding CurrentFlag, Mode=TwoWay}" 
+              ItemTapped="ListView_ItemTapped">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell DetailColor="Gray"
+                           ImageSource="{Binding ImageUrl, Converter={StaticResource irConverter}}"
+                     Text="{Binding Country}"
+                     Detail="{Binding DateAdopted, StringFormat='Adopted on {0:d}'}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
